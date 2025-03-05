@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI思政课一点通附加功能展示平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #4f46e5;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #475569;
+            border-left: 3px solid #6366f1;
+        }
+
+        .example strong {
+            display: block;
+            color: #4f46e5;
+            margin-bottom: 5px;
+        }
+
+        .example-media {
+            margin-top: 10px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .example-media img,
+        .example-media video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .result-text {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .usage {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 0;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI思政课一点通附加功能展示平台</h1>
+        <p>探索智能化的未来</p>
+    </header>
+
+    <div class="container">
+        <div class="grid" id="functionsGrid">
+            <!-- 文生图卡片 -->
+            <div class="card">
+                <h3>文生图（Text2Image）</h3>
+                <p>将文本描述转换为对应风格的图像。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    一只穿着宇航服的猫在月球上漫步，星空背景，赛博朋克风格。
+                    <div class="example-media">
+                        <img src="astronaut-cat.jpg" alt="宇航员猫咪示例">
+                    </div>
+                    <p class="result-text">↑ 根据提示词生成的图片示例</p>
+                </div>
+            </div>
+
+            <!-- 通用文字识别卡片 -->
+            <div class="card">
+                <h3>通用文字识别-高精度版（GeneralOCR）</h3>
+                <p>高精度识别图片/扫描件中的文字，支持古籍、表格等复杂排版。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    识别这张古籍扫描页中的繁体文字，输出为可编辑文本。
+                </div>
+            </div><!-- 长文档内容理解卡片 -->
+            <div class="card">
+                <h3>长文档内容理解（LongDocUnder）</h3>
+                <p>自动分析超长文档（如论文、报告），提取核心论点和结论。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    总结这份50页的科研论文，提取核心论点与实验结论。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>图像内容理解（ImageUnderstan）</h3>
+                <p>识别图像中的物体类别、场景状态及关键活动信息。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    分析这张城市街景照片中的物体类别、天气状态及主要活动。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>指令生成PPT（PPTGenerationf）</h3>
+                <p>根据用户提供的主题或指令，自动生成包含图表和案例的PPT大纲。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    根据"人工智能发展趋势"主题，生成包含数据图表和案例的10页PPT大纲。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>文件生成PPT（PPTGenerationf）</h3>
+                <p>将文档（如报告、论文）直接转换为分章节的PPT，保留图表和结构。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这篇市场分析报告自动转换为分章节的PPT，每页配一张图表。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>思维导图生成（TreeMind）</h3>
+                <p>基于关键词或主题，自动生成层级清晰的思维导图。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    生成"碳中和实施路径"的思维导图，包含政策、技术、挑战三级分支。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>文档格式转换</h3>
+                <p>将PDF、扫描件等文档转换为Word/Excel等格式，保留原始排版。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将PDF版合同转换为Word文档，保留原有排版和表格。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>文档矫正增强（DocCropEnhance）</h3>
+                <p>自动矫正倾斜、模糊的扫描文档，提升文字清晰度。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    矫正这张倾斜拍摄的A4纸文档，增强文字清晰度并去除阴影。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>网页内容总结（WebSummary）</h3>
+                <p>快速提取网页内容的核心要点，标注关键人物和事件。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    提取这篇新闻网页的要点，限300字内，标注关键人物与事件。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>网页信息提取（WebPilot）</h3>
+                <p>访问指定网页并提取特定信息（如评论、数据）。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    访问知乎"AI未来趋势"话题页，提取点赞最高的10条评论。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>表格文字识别（TableOCR）</h3>
+                <p>识别图片/扫描件中的表格数据，输出为可编辑的Excel文件。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    识别扫描版财务报表中的表格数据，输出为Excel可编辑格式。
+                </div>
+            </div><div class="card">
+                <h3>手写文字识别（HandwriteOCR）</h3>
+                <p>将手写笔记转换为结构化文本，保留序号和重点标记。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张手写会议笔记转换为结构化文本，保留序号和重点标注。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>论文生成PPT（PPTGenerationF）</h3>
+                <p>将论文摘要、图表自动生成学术汇报PPT模板。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将我的毕业论文摘要和图表自动生成学术汇报PPT模板。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Arxiv</h3>
+                <p>搜索并整理Arxiv平台上的学术论文，支持按时间、引用量排序。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    搜索2023年关于"大语言模型伦理"的最新论文，按引用量排序。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>创意图片生成（iRAG）</h3>
+                <p>根据文本描述生成概念设计图或创意图像。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    生成一组"未来城市交通"的概念设计图，包含悬浮汽车与立体道路。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>AI搜索</h3>
+                <p>用自然语言提问，直接获取精准搜索结果（如代码教程、技术解答）。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    "如何用Python实现图像风格迁移？"
+                </div>
+            </div>
+
+         <!-- 文生视频卡片 -->
+<div class="card">
+    <h3>文生视频（TextToVideo）</h3>
+    <p>根据文本剧本自动生成动画或视频片段。</p>
+    <div class="example">
+        <strong>示例提示词：</strong>
+        根据剧本生成30秒动画视频：机器人园丁在火星上培育发光植物。
+        
+        <div class="example-media" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <iframe 
+                src="https://player.bilibili.com/player.html?aid=114110066857264&bvid=BV1nF9ZYqELH&cid=28707193312&p=1&high_quality=1" 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                scrolling="no" 
+                frameborder="no" 
+                framespacing="0" 
+                allowfullscreen="true">
+            </iframe>
+        </div>
+        
+        <p class="result-text">↑ 根据提示词生成的视频示例</p>
+    </div>
+</div>
+        
+        <p class="result-text">↑ 根据提示词生成的视频示例</p>
+    </div>
+</div>
+            <div class="card">
+                <h3>图生视频-模版增强（lmac）</h3>
+                <p>将静态图片套用动态模板（如宣传片），生成视频。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张沙漠绿洲照片套用"生态保护宣传片"模板，生成动态视频。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>短语音识别-极速版</h3>
+                <p>实时转录短语音频为文字（如会议记录、指令）。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    实时转录这段5秒的语音："明天下午三点会议室A，带好提案。"
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>语音合成（TTS）</h3>
+                <p>将文本转换为自然流畅的语音，可调整音色、语速和情感。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这段产品介绍文本转换为沉稳男声，语速适中，带情感起伏。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>头条搜索</h3>
+                <p>快速检索头条平台的最新资讯，支持按时间或热度排序。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    搜索"新能源汽车补贴政策"的最新资讯，按时间排序。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>图生3D（ImageTo）</h3>
+                <p>将2D设计图/草图转换为可交互的3D模型。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张家具设计草图转换为3D模型，可360度旋转查看细节。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>用户意图判别</h3>
+                <p>分析用户提问，识别其深层需求（如技术指导、信息查询）。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    分析用户提问"如何备份手机照片到云端？"的真实需求。
+                </div>
+            </div>
+        </div>
+
+        <div class="usage">
+            <p><strong>使用方法</strong>：直接向对应功能发送符合其用途的指令（如文本描述、文件或语音），触发自动处理。</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.3s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
