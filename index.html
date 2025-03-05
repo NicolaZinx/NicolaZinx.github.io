@@ -297,8 +297,7 @@
                     "如何用Python实现图像风格迁移？"
                 </div>
             </div>
-
-         <!-- 文生视频卡片 -->
+<!-- 文生视频卡片 -->
 <div class="card">
     <h3>文生视频（TextToVideo）</h3>
     <p>根据文本剧本自动生成动画或视频片段。</p>
@@ -307,15 +306,18 @@
         根据剧本生成30秒动画视频：机器人园丁在火星上培育发光植物。
         
         <div class="example-media" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-            <iframe 
-                src="https://player.bilibili.com/player.html?aid=114110066857264&bvid=BV1nF9ZYqELH&cid=28707193312&p=1&high_quality=1" 
+            <video 
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                scrolling="no" 
-                frameborder="no" 
-                framespacing="0" 
-                allowfullscreen="true">
-            </iframe>
+                controls
+                playsinline>
+                <source src="robot-gardener.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
         </div>
+        
+        <p class="result-text">↑ 根据提示词生成的视频示例</p>
+    </div>
+</div>
         
         <p class="result-text">↑ 根据提示词生成的视频示例</p>
     </div>
