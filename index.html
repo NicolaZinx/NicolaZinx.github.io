@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
+<!DOCTYPE html><html lang="zh"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI思政课一点通附加功能展示平台</title>
+    <title>AI思政一点通 - 智能思政助手</title>
     <style>
         * {
             margin: 0;
@@ -27,79 +25,153 @@
         header {
             text-align: center;
             padding: 40px 0;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #d946ef);
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .main-title {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .header-buttons {
+            margin-top: 20px;
+        }
+
+        .header-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
             background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .card h3 {
             color: #4f46e5;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
+            font-size: 1.3em;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+            border-radius: 50%;
         }
 
         .card p {
             color: #666;
-            font-size: 0.95em;
-            margin-bottom: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.7;
         }
 
         .example {
             background: #f8fafc;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 15px;
+            border-radius: 10px;
             font-size: 0.9em;
             color: #475569;
             border-left: 3px solid #6366f1;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
         }
 
         .example strong {
             display: block;
             color: #4f46e5;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.05em;
         }
 
         .example-media {
-            margin-top: 10px;
-            border-radius: 6px;
+            margin-top: 15px;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .example-media img,
         .example-media video {
-            width: 100%;
             max-width: 100%;
             height: auto;
             display: block;
-            border-radius: 6px;
+            border-radius: 8px;
         }
 
         .result-text {
-            margin-top: 10px;
+            margin-top: 12px;
             font-style: italic;
             color: #666;
             font-size: 0.9em;
@@ -108,39 +180,92 @@
 
         .usage {
             text-align: center;
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 50px;
+            padding: 30px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .usage p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .category-title {
+            margin: 40px 0 20px;
+            font-size: 1.8em;
+            color: #4f46e5;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 0;
+            color: #6b7280;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
             
             header {
-                padding: 20px 0;
+                padding: 30px 0;
+            }
+
+            .main-title {
+                font-size: 1.6em;
             }
 
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
             }
 
             .card {
-                padding: 15px;
+                padding: 20px;
+            }
+            
+            .category-title {
+                font-size: 1.5em;
+                margin: 30px 0 15px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>AI思政课一点通附加功能展示平台</h1>
-        <p>探索智能化的未来</p>
+        <div class="main-title">AI思政一点通</div>
+        <h1>智能思政助手 - 全能AI工具箱</h1>
+        <p class="subtitle">用科技引领学习，用智能助力思考</p>
+        <div class="header-buttons">
+            <a href="#" class="header-btn">开始使用</a>
+            <a href="#" class="header-btn">查看教程</a>
+        </div>
     </header>
 
     <div class="container">
+        <div class="category-title">创意与生成功能</div>
         <div class="grid" id="functionsGrid">
             <!-- 文生图卡片 -->
             <div class="card">
@@ -150,12 +275,77 @@
                     <strong>示例提示词：</strong>
                     一只穿着宇航服的猫在月球上漫步，星空背景，赛博朋克风格。
                     <div class="example-media">
-                        <img src="astronaut-cat.jpg" alt="宇航员猫咪示例">
+                        <!-- 更新为正确的图片路径 -->
+                        <img src="astronaut-cat.jpg" alt="宇航员猫咪">
                     </div>
                     <p class="result-text">↑ 根据提示词生成的图片示例</p>
                 </div>
             </div>
 
+            <!-- 文生视频卡片 -->
+            <div class="card">
+                <h3>文生视频（TextToVideo）</h3>
+                <p>根据文本剧本自动生成动画或视频片段。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    根据剧本生成30秒动画视频：机器人园丁在火星上培育发光植物。
+                    
+                    <div class="example-media">
+                        <!-- 使用本地视频文件替换iframe -->
+                        <video width="100%" controls="">
+                            <source src="robot-gardener.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                    
+                    <p class="result-text">↑ 根据提示词生成的视频示例</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>创意图片生成（iRAG）</h3>
+                <p>根据文本描述生成概念设计图或创意图像。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    生成一组"未来城市交通"的概念设计图，包含悬浮汽车与立体道路。
+                    <div class="example-media">
+                        <!-- 可以使用robot-gardener.jpg作为创意图片示例 -->
+                        <img src="robot-gardener.jpg" alt="创意概念图示例">
+                    </div>
+                    <p class="result-text">↑ 创意概念图示例</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>图生视频-模版增强（lmac）</h3>
+                <p>将静态图片套用动态模板（如宣传片），生成视频。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张沙漠绿洲照片套用"生态保护宣传片"模板，生成动态视频。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>图生3D（ImageTo）</h3>
+                <p>将2D设计图/草图转换为可交互的3D模型。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张家具设计草图转换为3D模型，可360度旋转查看细节。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>语音合成（TTS）</h3>
+                <p>将文本转换为自然流畅的语音，可调整音色、语速和情感。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这段产品介绍文本转换为沉稳男声，语速适中，带情感起伏。
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">文档与信息处理</div>
+        <div class="grid">
             <!-- 通用文字识别卡片 -->
             <div class="card">
                 <h3>通用文字识别-高精度版（GeneralOCR）</h3>
@@ -164,7 +354,8 @@
                     <strong>示例提示词：</strong>
                     识别这张古籍扫描页中的繁体文字，输出为可编辑文本。
                 </div>
-            </div><!-- 长文档内容理解卡片 -->
+            </div>
+
             <div class="card">
                 <h3>长文档内容理解（LongDocUnder）</h3>
                 <p>自动分析超长文档（如论文、报告），提取核心论点和结论。</p>
@@ -183,6 +374,54 @@
                 </div>
             </div>
 
+            <div class="card">
+                <h3>文档格式转换</h3>
+                <p>将PDF、扫描件等文档转换为Word/Excel等格式，保留原始排版。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将PDF版合同转换为Word文档，保留原有排版和表格。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>文档矫正增强（DocCropEnhance）</h3>
+                <p>自动矫正倾斜、模糊的扫描文档，提升文字清晰度。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    矫正这张倾斜拍摄的A4纸文档，增强文字清晰度并去除阴影。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>表格文字识别（TableOCR）</h3>
+                <p>识别图片/扫描件中的表格数据，输出为可编辑的Excel文件。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    识别扫描版财务报表中的表格数据，输出为Excel可编辑格式。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>手写文字识别（HandwriteOCR）</h3>
+                <p>将手写笔记转换为结构化文本，保留序号和重点标记。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    将这张手写会议笔记转换为结构化文本，保留序号和重点标注。
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>短语音识别-极速版</h3>
+                <p>实时转录短语音频为文字（如会议记录、指令）。</p>
+                <div class="example">
+                    <strong>示例提示词：</strong>
+                    实时转录这段5秒的语音："明天下午三点会议室A，带好提案。"
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">学习与研究辅助</div>
+        <div class="grid">
             <div class="card">
                 <h3>指令生成PPT（PPTGenerationf）</h3>
                 <p>根据用户提供的主题或指令，自动生成包含图表和案例的PPT大纲。</p>
@@ -211,23 +450,26 @@
             </div>
 
             <div class="card">
-                <h3>文档格式转换</h3>
-                <p>将PDF、扫描件等文档转换为Word/Excel等格式，保留原始排版。</p>
+                <h3>论文生成PPT（PPTGenerationF）</h3>
+                <p>将论文摘要、图表自动生成学术汇报PPT模板。</p>
                 <div class="example">
                     <strong>示例提示词：</strong>
-                    将PDF版合同转换为Word文档，保留原有排版和表格。
+                    将我的毕业论文摘要和图表自动生成学术汇报PPT模板。
                 </div>
             </div>
 
             <div class="card">
-                <h3>文档矫正增强（DocCropEnhance）</h3>
-                <p>自动矫正倾斜、模糊的扫描文档，提升文字清晰度。</p>
+                <h3>Arxiv</h3>
+                <p>搜索并整理Arxiv平台上的学术论文，支持按时间、引用量排序。</p>
                 <div class="example">
                     <strong>示例提示词：</strong>
-                    矫正这张倾斜拍摄的A4纸文档，增强文字清晰度并去除阴影。
+                    搜索2023年关于"大语言模型伦理"的最新论文，按引用量排序。
                 </div>
             </div>
+        </div>
 
+        <div class="category-title">网络与搜索工具</div>
+        <div class="grid">
             <div class="card">
                 <h3>网页内容总结（WebSummary）</h3>
                 <p>快速提取网页内容的核心要点，标注关键人物和事件。</p>
@@ -247,109 +489,11 @@
             </div>
 
             <div class="card">
-                <h3>表格文字识别（TableOCR）</h3>
-                <p>识别图片/扫描件中的表格数据，输出为可编辑的Excel文件。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    识别扫描版财务报表中的表格数据，输出为Excel可编辑格式。
-                </div>
-            </div><div class="card">
-                <h3>手写文字识别（HandwriteOCR）</h3>
-                <p>将手写笔记转换为结构化文本，保留序号和重点标记。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    将这张手写会议笔记转换为结构化文本，保留序号和重点标注。
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>论文生成PPT（PPTGenerationF）</h3>
-                <p>将论文摘要、图表自动生成学术汇报PPT模板。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    将我的毕业论文摘要和图表自动生成学术汇报PPT模板。
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Arxiv</h3>
-                <p>搜索并整理Arxiv平台上的学术论文，支持按时间、引用量排序。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    搜索2023年关于"大语言模型伦理"的最新论文，按引用量排序。
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>创意图片生成（iRAG）</h3>
-                <p>根据文本描述生成概念设计图或创意图像。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    生成一组"未来城市交通"的概念设计图，包含悬浮汽车与立体道路。
-                </div>
-            </div>
-
-            <div class="card">
                 <h3>AI搜索</h3>
                 <p>用自然语言提问，直接获取精准搜索结果（如代码教程、技术解答）。</p>
                 <div class="example">
                     <strong>示例提示词：</strong>
                     "如何用Python实现图像风格迁移？"
-                </div>
-            </div>
-<!-- 文生视频卡片 -->
-<div class="card">
-    <h3>文生视频（TextToVideo）</h3>
-    <p>根据文本剧本自动生成动画或视频片段。</p>
-    <div class="example">
-        <strong>示例提示词：</strong>
-        根据剧本生成30秒动画视频：机器人园丁在火星上培育发光植物。
-        
-        <div class="example-media" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-            <video 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                controls
-                playsinline>
-                <source src="robot-gardener.mp4" type="video/mp4">
-                您的浏览器不支持视频播放。
-            </video>
-        </div>
-        
-        <p class="result-text">↑ 根据提示词生成的视频示例</p>
-    </div>
-</div>
-        
-        <p class="result-text">↑ 根据提示词生成的视频示例</p>
-    </div>
-</div>
-        
-        <p class="result-text">↑ 根据提示词生成的视频示例</p>
-    </div>
-</div>
-            <div class="card">
-                <h3>图生视频-模版增强（lmac）</h3>
-                <p>将静态图片套用动态模板（如宣传片），生成视频。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    将这张沙漠绿洲照片套用"生态保护宣传片"模板，生成动态视频。
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>短语音识别-极速版</h3>
-                <p>实时转录短语音频为文字（如会议记录、指令）。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    实时转录这段5秒的语音："明天下午三点会议室A，带好提案。"
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>语音合成（TTS）</h3>
-                <p>将文本转换为自然流畅的语音，可调整音色、语速和情感。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    将这段产品介绍文本转换为沉稳男声，语速适中，带情感起伏。
                 </div>
             </div>
 
@@ -359,15 +503,6 @@
                 <div class="example">
                     <strong>示例提示词：</strong>
                     搜索"新能源汽车补贴政策"的最新资讯，按时间排序。
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>图生3D（ImageTo）</h3>
-                <p>将2D设计图/草图转换为可交互的3D模型。</p>
-                <div class="example">
-                    <strong>示例提示词：</strong>
-                    将这张家具设计草图转换为3D模型，可360度旋转查看细节。
                 </div>
             </div>
 
@@ -384,22 +519,50 @@
         <div class="usage">
             <p><strong>使用方法</strong>：直接向对应功能发送符合其用途的指令（如文本描述、文件或语音），触发自动处理。</p>
         </div>
+
+        <div class="footer">
+            <p>© 2025 AI思政一点通 | 智能思政助手 | 全能AI工具箱 | 所有权利保留</p>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 为标题添加动画效果
+            const header = document.querySelector('header');
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            header.style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // 为卡片添加动画效果
             const cards = document.querySelectorAll('.card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.3s ease';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.5s ease';
                 
                 setTimeout(() => {
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
-                }, index * 100);
+                }, 500 + index * 50);
+            });
+            
+            // 为分类标题添加动画效果
+            const categoryTitles = document.querySelectorAll('.category-title');
+            categoryTitles.forEach((title, index) => {
+                title.style.opacity = '0';
+                title.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    title.style.opacity = '1';
+                }, 300 + index * 100);
             });
         });
     </script>
-</body>
-</html>
+
+
+</body></html>
